@@ -277,8 +277,8 @@ header {
 /* Education (wide, left) and Memberships (narrow, right) sit side by side. */
 .aboutInfo {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 30px;
+ /* grid-template-columns: 2fr 1fr; */
+  gap: 90px;
   margin-top: 48px;
   align-items: start;
 }
@@ -348,7 +348,7 @@ header {
   background: linear-gradient(180deg, #f9fdfc, #ffffff);
   border: 1px solid #e6f0ef;
   border-radius: 20px;
-  padding: 22px 24px;
+  padding: 16px 20px;
   box-shadow: 0 10px 26px #0d50500f;
   transition:
     transform 0.16s ease,
@@ -394,7 +394,7 @@ header {
 }
 
 .eduTag {
-  display: inline-block;
+  display: none;
   margin-top: 14px;
   padding: 5px 12px;
   border-radius: 999px;
@@ -413,18 +413,18 @@ header {
   margin: 32px 0 0;
   padding: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 22px;
 }
 
 .memItem {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 18px;
   background: linear-gradient(180deg, #f3faf9, #ffffff);
   border: 1px solid #e6f0ef;
   border-radius: 20px;
-  padding: 20px 24px;
+  padding: 10px 14px;
   min-height: 96px;
   box-shadow: 0 10px 26px #0d50500d;
   transition:
