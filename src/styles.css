@@ -508,7 +508,7 @@ header {
   display: grid;
   /* Pin the card stacks to a compact fixed width so the centre collage claims
      the maximum remaining width — close to the full carousel span. */
-  grid-template-columns: 210px 1fr 210px;
+  grid-template-columns: 230px 1fr 209px;
   gap: 18px;
   align-items: stretch;
 }
@@ -647,12 +647,12 @@ header {
 
 /* Value-proposition strip */
 .expValues {
-  margin-top: 30px;
+  margin-bottom: 150px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
   background: #f2faf9;
-  border: 1px solid #e2efee;
+  /* border: 1px solid #e2efee; */
   border-radius: 18px;
   padding: 22px 26px;
 }
@@ -661,6 +661,9 @@ header {
   display: flex;
   align-items: center;
   gap: 14px;
+  border: 1px solid #0b7c7f;
+  border-radius: 10px;
+  padding: 8px;
 }
 
 .expValueIcon {
@@ -823,11 +826,12 @@ header {
 .award {
   display: flex;
   gap: 14px;
-  align-items: flex-start;
-  padding: 20px;
+  align-items: center;
   border-radius: 16px;
   background: #ffffff;
-  border: 1px solid #dcefec;
+  border: 1px solid #0b7c7f;
+  border-radius: 10px;
+  padding: 10px 8px;
 }
 
 .award svg {

@@ -73,19 +73,31 @@ export function Expertise({ areas, image, imageAlt }: ExpertiseProps) {
   }));
 
   const leftCards = cards.slice(0, 3);
-  // The last three areas have the longest headings, so flank the image with
-  // them on the right to visually balance the two-line titles on the left.
-  const rightCards = cards.slice(6);
-  const bottomCards = cards.slice(3, 6);
+  const rightCards = cards.slice(3, 6);
+  const bottomCards = cards.slice(6);
 
   return (
     <section id="expertise" className="section tinted">
       <div className="expHead">
-        <div className="sectionTag">OUR EXPERTISE</div>
+        <div className="sectionTag">DOCTOR'S EXPERTISE</div>
         <h2>
           Comprehensive <span>respiratory care.</span>
         </h2>
         <p className="expLead">Advanced care for every breath, for every age.</p>
+      </div>
+
+      <div className="expValues">
+        {VALUE_PROPS.map(({ icon: Icon, title, text }) => (
+          <div className="expValue" key={title}>
+            <span className="expValueIcon" aria-hidden="true">
+              <Icon />
+            </span>
+            <div>
+              <b>{title}</b>
+              <small>{text}</small>
+            </div>
+          </div>
+        ))}
       </div>
 
       <div className="expGrid">
@@ -115,19 +127,7 @@ export function Expertise({ areas, image, imageAlt }: ExpertiseProps) {
         ))}
       </div>
 
-      <div className="expValues">
-        {VALUE_PROPS.map(({ icon: Icon, title, text }) => (
-          <div className="expValue" key={title}>
-            <span className="expValueIcon" aria-hidden="true">
-              <Icon />
-            </span>
-            <div>
-              <b>{title}</b>
-              <small>{text}</small>
-            </div>
-          </div>
-        ))}
-      </div>
+    
     </section>
   );
 }
