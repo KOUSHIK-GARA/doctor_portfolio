@@ -52,63 +52,63 @@ export function About({ content, education, memberships }: AboutProps) {
         </div>
       </div>
 
-      <div className="aboutInfo">
-        <div className="eduBlock">
-          <div className="infoHead">
-            <span className="infoBadge">
-              <GraduationCap />
-            </span>
-            <div>
-              <h3>Education</h3>
-              <p>Academic journey and qualifications</p>
-            </div>
+      <div className="eduBlock">
+        <div className="infoHead">
+          <span className="infoBadge">
+            <GraduationCap />
+          </span>
+          <div>
+            <h3>Education</h3>
+            <p>Academic journey and qualifications</p>
           </div>
-
-          <ul className="eduGrid">
-            {education.map((item, index) => {
-              const Icon = EDUCATION_ICONS[index] ?? GraduationCap;
-              return (
-                <li className="eduCard2" key={`${item.year}-${item.degree}`}>
-                  <span className="eduIcon">
-                    <Icon />
-                  </span>
-                  <div className="eduText">
-                    <b>{item.degree}</b>
-                    <small>{item.institution}</small>
-                    {item.tag ? <span className="eduTag">{item.tag}</span> : null}
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
         </div>
 
-        <div className="memBlock">
-          <div className="infoHead">
-            <span className="infoBadge">
-              <Users />
-            </span>
-            <div>
-              <h3>Memberships</h3>
-              <p>Professional associations and societies</p>
-            </div>
-          </div>
-
-          <ul className="memList">
-            {memberships.map((membership, index) => {
-              const Icon = MEMBERSHIP_ICONS[index % MEMBERSHIP_ICONS.length];
-              return (
-                <li className="memItem" key={membership}>
-                  <span className="memIcon">
+        <ol className="eduTL">
+          {education.map((item, index) => {
+            const Icon = EDUCATION_ICONS[index] ?? GraduationCap;
+            const side = index % 2 === 0 ? 'up' : 'down';
+            return (
+              <li className={`eduTLItem ${side}`} key={`${item.year}-${item.degree}`}>
+                <div className="eduTLCard">
+                  <span className="eduTLIcon" aria-hidden="true">
                     <Icon />
                   </span>
-                  <span className="memName">{membership}</span>
-                  <ChevronRight className="memChevron" />
-                </li>
-              );
-            })}
-          </ul>
+                  <b>{item.degree}</b>
+                  <small>{item.institution}</small>
+                  {/* {item.tag ? <span className="eduTag">{item.tag}</span> : null} */}
+                </div>
+                <span className="eduTLNode" aria-hidden="true" />
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+
+      <div className="memBlock">
+        <div className="infoHead">
+          <span className="infoBadge">
+            <Users />
+          </span>
+          <div>
+            <h3>Memberships</h3>
+            <p>Professional associations and societies</p>
+          </div>
         </div>
+
+        <ul className="memList">
+          {memberships.map((membership, index) => {
+            const Icon = MEMBERSHIP_ICONS[index % MEMBERSHIP_ICONS.length];
+            return (
+              <li className="memItem" key={membership}>
+                <span className="memIcon">
+                  <Icon />
+                </span>
+                <span className="memName">{membership}</span>
+                <ChevronRight className="memChevron" />
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

@@ -274,13 +274,13 @@ header {
   margin-top: 12px;
 }
 
-/* Education (wide, left) and Memberships (narrow, right) sit side by side. */
-.aboutInfo {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 30px;
+/* Education & Memberships stack full-width. */
+.eduBlock {
   margin-top: 48px;
-  align-items: start;
+}
+
+.memBlock {
+  margin-top: 52px;
 }
 
 .infoHead {
@@ -331,41 +331,113 @@ header {
   background: #0b7c7f;
 }
 
-/* Education — two-column card grid */
-.eduGrid {
+/* Education — alternating horizontal timeline */
+.eduTL {
   list-style: none;
-  margin: 32px 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
+  /* Break out wider than the 1180 text column so all nine cards fit without
+     a horizontal scrollbar. Centred relative to the section. */
+  width: min(96vw, 1360px);
+  margin: 40px 0 0 50%;
+  transform: translateX(-50%);
+  padding: 4px 0 6px;
+  display: flex;
+  position: relative;
+  overflow-x: auto;
 }
 
-.eduCard2 {
-  display: flex;
-  align-items: center;
-  gap: 18px;
+/* The horizontal spine runs through the vertical centre. */
+.eduTL::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, #0b7c7f, #bfe6e2);
+}
+
+.eduTLItem {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  min-height: 300px;
+  padding: 0 8px;
+}
+
+.eduTLCard {
+  position: relative;
+  text-align: center;
   background: linear-gradient(180deg, #f9fdfc, #ffffff);
   border: 1px solid #e6f0ef;
-  border-radius: 20px;
-  padding: 12px 14px;
-  box-shadow: 0 10px 26px #0d50500f;
+  border-radius: 14px;
+  padding: 14px 12px;
+  box-shadow: 0 10px 24px #0d50500f;
   transition:
     transform 0.16s ease,
     box-shadow 0.16s ease,
     border-color 0.16s ease;
 }
 
-.eduCard2:hover {
-  transform: translateY(-3px);
-  border-color: #bfe0dd;
-  box-shadow: 0 16px 34px #0d505016;
+.eduTLItem.up .eduTLCard {
+  grid-row: 1;
+  align-self: end;
+  margin-bottom: 26px;
 }
 
-.eduIcon {
-  flex-shrink: 0;
-  width: 54px;
-  height: 54px;
+.eduTLItem.down .eduTLCard {
+  grid-row: 2;
+  align-self: start;
+  margin-top: 26px;
+}
+
+.eduTLCard:hover {
+  transform: translateY(-3px);
+  border-color: #bfe0dd;
+  box-shadow: 0 16px 32px #0d505016;
+}
+
+/* Stem connecting each card to the spine. */
+.eduTLItem.up .eduTLCard::after,
+.eduTLItem.down .eduTLCard::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 26px;
+  background: #cfe7e3;
+}
+
+.eduTLItem.up .eduTLCard::after {
+  bottom: -26px;
+}
+
+.eduTLItem.down .eduTLCard::after {
+  top: -26px;
+}
+
+/* Node sitting on the spine. */
+.eduTLNode {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #0b7c7f;
+  box-shadow: 0 0 0 5px rgba(11, 124, 127, 0.12);
+  z-index: 1;
+}
+
+.eduTLIcon {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 10px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -373,58 +445,58 @@ header {
   background: #e3f4f1;
 }
 
-.eduIcon svg {
-  width: 26px;
-  height: 26px;
+.eduTLIcon svg {
+  width: 20px;
+  height: 20px;
 }
 
-.eduText b {
+.eduTLCard b {
   display: block;
-  font-size: 16.5px;
+  font-size: 12.5px;
   line-height: 1.3;
   color: #16313a;
 }
 
-.eduText small {
+.eduTLCard small {
   display: block;
-  margin-top: 6px;
-  font-size: 13px;
-  line-height: 1.55;
+  margin-top: 5px;
+  font-size: 11px;
+  line-height: 1.45;
   color: #6b8288;
 }
 
 .eduTag {
-  display: none;
-  margin-top: 14px;
-  padding: 5px 12px;
+  display: done;
+  margin-top: 10px;
+  padding: 4px 10px;
   border-radius: 999px;
   background: #e3f4f1;
   color: #0b7c7f;
-  font-size: 10.5px;
+  font-size: 9.5px;
   font-weight: 700;
-  letter-spacing: 0.9px;
+  letter-spacing: 0.7px;
   text-transform: uppercase;
 }
 
-/* Memberships list — vertical stack in the right column.
-   Deliberately larger than the education cards so the two columns feel distinct. */
+/* Memberships list — full-width row beneath the education timeline.
+   Deliberately larger than the education cards so the sections feel distinct. */
 .memList {
   list-style: none;
   margin: 32px 0 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 22px;
 }
 
 .memItem {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 12px;
   background: linear-gradient(180deg, #f3faf9, #ffffff);
   border: 1px solid #e6f0ef;
   border-radius: 20px;
-  padding: 20px 24px;
+  padding: 10px 14px;
   min-height: 96px;
   box-shadow: 0 10px 26px #0d50500d;
   transition:
@@ -647,7 +719,7 @@ header {
 
 /* Value-proposition strip */
 .expValues {
-  margin-bottom: 150px;
+  margin-top: 150px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
@@ -1356,8 +1428,7 @@ footer {
     left: 15px;
   }
 
-  .aboutTop,
-  .aboutInfo {
+  .aboutTop {
     grid-template-columns: 1fr;
   }
 
@@ -1448,9 +1519,14 @@ footer {
 
   .expBottom,
   .expValues,
-  .recognitionGrid,
-  .eduGrid {
+  .recognitionGrid {
     grid-template-columns: 1fr;
+  }
+
+  /* Keep the education timeline scrollable with legible card widths on phones. */
+  .eduTLItem {
+    flex: 0 0 160px;
+    min-height: 260px;
   }
 
   .contactCards {

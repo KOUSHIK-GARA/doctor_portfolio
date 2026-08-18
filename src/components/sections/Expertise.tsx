@@ -86,20 +86,6 @@ export function Expertise({ areas, image, imageAlt }: ExpertiseProps) {
         <p className="expLead">Advanced care for every breath, for every age.</p>
       </div>
 
-      <div className="expValues">
-        {VALUE_PROPS.map(({ icon: Icon, title, text }) => (
-          <div className="expValue" key={title}>
-            <span className="expValueIcon" aria-hidden="true">
-              <Icon />
-            </span>
-            <div>
-              <b>{title}</b>
-              <small>{text}</small>
-            </div>
-          </div>
-        ))}
-      </div>
-
       <div className="expGrid">
         <div className="expCol">
           {leftCards.map(({ area, Icon }) => (
@@ -124,6 +110,20 @@ export function Expertise({ areas, image, imageAlt }: ExpertiseProps) {
       <div className="expBottom">
         {bottomCards.map(({ area, Icon }) => (
           <ExpertiseCard key={area.title} area={area} Icon={Icon} />
+        ))}
+      </div>
+
+      <div className="expValues">
+        {VALUE_PROPS.map(({ icon: Icon, title, text }) => (
+          <div className="expValue" key={title}>
+            <span className="expValueIcon" aria-hidden="true">
+              <Icon />
+            </span>
+            <div>
+              <b>{title}</b>
+              <small>{text}</small>
+            </div>
+          </div>
         ))}
       </div>
 
