@@ -647,7 +647,7 @@ header {
 
 /* Value-proposition strip */
 .expValues {
-  margin-bottom: 150px;
+  margin-top: 150px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
