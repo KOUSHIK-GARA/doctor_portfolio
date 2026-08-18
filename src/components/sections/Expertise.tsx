@@ -73,8 +73,10 @@ export function Expertise({ areas, image, imageAlt }: ExpertiseProps) {
   }));
 
   const leftCards = cards.slice(0, 3);
-  const rightCards = cards.slice(3, 6);
-  const bottomCards = cards.slice(6);
+  // The last three areas have the longest headings, so flank the image with
+  // them on the right to visually balance the two-line titles on the left.
+  const rightCards = cards.slice(6);
+  const bottomCards = cards.slice(3, 6);
 
   return (
     <section id="expertise" className="section tinted">

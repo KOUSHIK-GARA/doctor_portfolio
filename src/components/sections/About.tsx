@@ -1,12 +1,17 @@
 import {
   Activity,
+  Award,
+  Baby,
   BookOpen,
   ChevronRight,
   Globe,
   GraduationCap,
   HeartPulse,
+  Microscope,
+  Moon,
   Stethoscope,
   Users,
+  Wind,
   type LucideIcon,
 } from 'lucide-react';
 import type { About as AboutContent, EducationItem } from '../../types/portfolio';
@@ -18,7 +23,17 @@ interface AboutProps {
 }
 
 // Presentational icon mappings (by position) for the education and membership lists.
-const EDUCATION_ICONS: LucideIcon[] = [HeartPulse, Stethoscope, BookOpen];
+const EDUCATION_ICONS: LucideIcon[] = [
+  Award, // DNB (Pulmonary Medicine)
+  Stethoscope, // MD (Pulmonary Medicine)
+  BookOpen, // MBBS
+  Microscope, // Fellowship in Interventional Pulmonology
+  Activity, // Fellowship in Advanced Lung Endoscopy
+  Moon, // Fellowship in Sleep Medicine (ISDA)
+  Baby, // Diploma in Pediatric Pulmonary Medicine
+  Baby, // Diploma in Pediatric Sleep Medicine
+  Wind, // Advanced Certification in Asthma & Allergy
+];
 const MEMBERSHIP_ICONS: LucideIcon[] = [HeartPulse, Globe, Users, Activity];
 
 export function About({ content, education, memberships }: AboutProps) {
@@ -37,8 +52,8 @@ export function About({ content, education, memberships }: AboutProps) {
         </div>
       </div>
 
-      <div className="grid2">
-        <div className="infoCard">
+      <div className="aboutInfo">
+        <div className="eduBlock">
           <div className="infoHead">
             <span className="infoBadge">
               <GraduationCap />
@@ -49,21 +64,18 @@ export function About({ content, education, memberships }: AboutProps) {
             </div>
           </div>
 
-          <ul className="eduTimeline">
+          <ul className="eduGrid">
             {education.map((item, index) => {
               const Icon = EDUCATION_ICONS[index] ?? GraduationCap;
               return (
-                <li className="eduItem" key={`${item.year}-${item.degree}`}>
-                  <span className="eduNode" aria-hidden="true" />
-                  <div className="eduCard">
-                    <span className="eduYear">{item.year}</span>
-                    <span className="eduIcon">
-                      <Icon />
-                    </span>
-                    <div className="eduText">
-                      <b>{item.degree}</b>
-                      <small>{item.institution}</small>
-                    </div>
+                <li className="eduCard2" key={`${item.year}-${item.degree}`}>
+                  <span className="eduIcon">
+                    <Icon />
+                  </span>
+                  <div className="eduText">
+                    <b>{item.degree}</b>
+                    <small>{item.institution}</small>
+                    {item.tag ? <span className="eduTag">{item.tag}</span> : null}
                   </div>
                 </li>
               );
@@ -71,7 +83,7 @@ export function About({ content, education, memberships }: AboutProps) {
           </ul>
         </div>
 
-        <div className="infoCard">
+        <div className="memBlock">
           <div className="infoHead">
             <span className="infoBadge">
               <Users />

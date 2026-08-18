@@ -10,11 +10,14 @@ export function Hero({ doctor, content }: HeroProps) {
   return (
     <section id="home" className="hero">
       <div className="heroText">
+        <span className="specialistBadge">
+          <Stethoscope size={14} /> Specialist Care
+        </span>
         <span className="eyebrow">{content.eyebrow.toUpperCase()}</span>
         <h1>
           Advanced care for every <em>breath</em> you take.
         </h1>
-        <p className="credentials">{doctor.credentials.join(' · ')}</p>
+        <p className="credentials">{doctor.credentials.join(', ')}</p>
         <p>{doctor.bio}</p>
 
         <div className="actions">
@@ -45,13 +48,6 @@ export function Hero({ doctor, content }: HeroProps) {
           decoding="async"
           fetchPriority="high"
         />
-        <div className="floating">
-          <Stethoscope />
-          <div>
-            <b>Specialist Care</b>
-            <small>Interventional Pulmonology &amp; Sleep Medicine</small>
-          </div>
-        </div>
       </div>
     </section>
   );

@@ -82,6 +82,7 @@ export function Footer({ doctor }: FooterProps) {
             <div>
               <b>Location</b>
               <span>{doctor.address}</span>
+              <span className="footerSub">{doctor.locationHours}</span>
             </div>
           </li>
           <li>

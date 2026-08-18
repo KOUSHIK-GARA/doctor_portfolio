@@ -8,7 +8,7 @@ interface ExperienceProps {
 
 export function Experience({ experience, achievements }: ExperienceProps) {
   return (
-    <section id="experience" className="section">
+    <section id="experience" className="section tinted">
       <div className="sectionTag">CAREER JOURNEY</div>
       <h2>
         A Journey of Growth &  <span>Expertise.</span>

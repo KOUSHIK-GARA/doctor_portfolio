@@ -4,6 +4,12 @@ import consultationImage from '../assets/images/consultation.jpg';
 import collageImage from '../assets/images/interventional-collage.jpg';
 import bronchoscopyImage1 from '../assets/images/bronchoscopy-01.jpg';
 import bronchoscopyImage2 from '../assets/images/bronchoscopy-02.jpg';
+import procedureTeachingImage from '../assets/images/procedure-teaching.jpg';
+import bronchoscopyTeamImage from '../assets/images/bronchoscopy-team.jpg';
+import airwayScopeImage from '../assets/images/airway-scope.jpg';
+import procedureSuiteImage from '../assets/images/procedure-suite.jpg';
+import lungPointNavigationImage from '../assets/images/lungpoint-navigation.jpg';
+import endoscopySuiteImage from '../assets/images/endoscopy-suite.jpg';
 
 /**
  * Single, typed source of truth for all website content.
@@ -21,7 +27,7 @@ export const portfolio: PortfolioData = {
       'MBBS',
       'MD',
       'DNB (Pulmonary Medicine)',
-      'FAIP (Yashoda Hospitals & SGH, Singapore)',
+      'FAIP (Yashoda Hospitals & SGH - Singapore)',
       'FSM',
       'DPPM',
       'DPSM',
@@ -38,9 +44,11 @@ export const portfolio: PortfolioData = {
       { platform: 'instagram', url: 'https://www.instagram.com/urstruly_chitti/' },
       { platform: 'linkedin', url: 'https://www.linkedin.com/in/chaitanya-kiran-9718b1344/' },
     ],
+    // Hospital OPD timings shown under the clinic address in the footer.
+    locationHours: 'Mon – Sat · 10:00 AM – 5:00 PM',
     hours: [
-      { label: 'Mon – Sat', value: '10:00 AM – 6:00 PM' },
-      { label: 'Sunday', value: 'Closed' },
+      { label: 'Mon – Sat', value: '5:30 PM – 9:30 PM' },
+      { label: 'Sunday', value: 'On call' },
     ],
   },
   hero: {
@@ -119,13 +127,31 @@ export const portfolio: PortfolioData = {
       details: [],
     },
   ],
-  expertiseImage: bronchoscopyImage1,
-  expertiseImageAlt: 'Dr. G. Chaitanya Kiran performing a bronchoscopy procedure',
+  expertiseImage: collageImage,
+  expertiseImageAlt: 'A collage of Dr. G. Chaitanya Kiran performing interventional pulmonology procedures',
   gallery: [
     {
-      src: collageImage,
-      alt: 'Dr. Chaitanya Kiran performing a range of interventional pulmonology procedures',
-      caption: 'Interventional pulmonology in action',
+      src: procedureTeachingImage,
+      alt: 'Dr. Chaitanya Kiran guiding the team through an airway procedure',
+      caption: 'Leading the team through a live airway intervention',
+      objectPosition: '50% 40%',
+    },
+    {
+      src: endoscopySuiteImage,
+      alt: 'Dr. Chaitanya Kiran in the endoscopy suite',
+      caption: 'Advanced endoscopy suite, fully equipped',
+      objectPosition: '50% 30%',
+    },
+    {
+      src: bronchoscopyTeamImage,
+      alt: 'Dr. Chaitanya Kiran performing a bronchoscopy with his team',
+      caption: 'Precision bronchoscopy with the clinical team',
+      objectPosition: '50% 30%',
+    },
+    {
+      src: airwayScopeImage,
+      alt: 'Dr. Chaitanya Kiran navigating the airway during a bronchoscopy',
+      caption: 'Real-time airway visualisation during the procedure',
     },
     {
       src: bronchoscopyImage1,
@@ -133,6 +159,17 @@ export const portfolio: PortfolioData = {
       caption: 'Bedside bronchoscopy at the point of care',
       // Shift the crop down to reveal more of the top of the frame.
       objectPosition: '50% 28%',
+    },
+    {
+      src: procedureSuiteImage,
+      alt: 'Dr. Chaitanya Kiran monitoring imaging inside the procedure suite',
+      caption: 'Image-guided intervention in the procedure suite',
+    },
+    {
+      src: lungPointNavigationImage,
+      alt: 'Dr. Chaitanya Kiran with the LungPoint navigation bronchoscopy system',
+      caption: 'Navigation bronchoscopy for the lung periphery',
+      objectPosition: '50% 25%',
     },
     {
       src: bronchoscopyImage2,
@@ -147,23 +184,62 @@ export const portfolio: PortfolioData = {
       year: '2025',
       degree: 'DNB (Pulmonary Medicine)',
       institution: 'National Board of Examinations, India',
+      tag: 'Post Graduate',
     },
     {
       year: '2021',
       degree: 'MD (Pulmonary Medicine)',
       institution: "IMS & SUM Hospital, Siksha 'O' Anusandhan University, Bhubaneswar",
+      tag: 'Post Graduate',
     },
     {
       year: '2015',
       degree: 'MBBS',
       institution:
         'Alluri Sita Rama Raju Academy of Medical Sciences (ASRAM), Eluru — Dr. NTR University of Health Sciences, Andhra Pradesh',
+      tag: 'Medical Degree',
+    },
+    {
+      year: '2024',
+      degree: 'Fellowship in Interventional Pulmonology',
+      institution: 'Yashoda Hospitals, Somajiguda',
+      tag: 'Fellowship',
+    },
+    {
+      year: '2025',
+      degree: 'Fellowship in Advanced Lung Endoscopy',
+      institution: 'Singapore General Hospital, Singapore',
+      tag: 'Fellowship',
+    },
+    {
+      year: '2025',
+      degree: 'Fellowship in Sleep Medicine (ISDA)',
+      institution: 'Indian Sleep Disorders Association',
+      tag: 'Fellowship',
+    },
+    {
+      year: '2026',
+      degree: 'Diploma in Pediatric Pulmonary Medicine',
+      institution: "Sishuka Children's Hospital, Bangalore",
+      tag: 'Diploma',
+    },
+    {
+      year: '2026',
+      degree: 'Diploma in Pediatric Sleep Medicine',
+      institution: 'Colorado, USA',
+      tag: 'Diploma',
+    },
+    {
+      year: '2025',
+      degree: 'Advanced Certification in Asthma & Allergy',
+      institution: 'Bangalore',
+      tag: 'Certification',
     },
   ],
   experience: [
     {
       period: 'Jul 2026 – Present',
-      role: 'Consultant Interventional Pulmonologist & Sleep Medicine',
+      role: 'Consultant Interventional Pulmonology & Sleep Medicine',
       organization: 'Manipal Hospitals, Bhubaneswar',
     },
     {
@@ -175,31 +251,6 @@ export const portfolio: PortfolioData = {
       period: 'Aug 2022 – Present',
       role: 'Assistant Professor of Respiratory Medicine',
       organization: 'GEMS Medical College, Srikakulam',
-    },
-    {
-      period: '2026',
-      role: 'Diploma in Pediatric Pulmonary Medicine',
-      organization: "Sishuka Children's Hospital, Bangalore",
-    },
-    {
-      period: '2025',
-      role: 'Fellowship in Advanced Lung Endoscopy',
-      organization: 'Singapore General Hospital, Singapore',
-    },
-    {
-      period: '2025',
-      role: 'Fellowship in Sleep Medicine (ISDA)',
-      organization: 'Indian Sleep Disorders Association',
-    },
-    {
-      period: '2025',
-      role: 'Advanced Certification in Asthma & Allergy',
-      organization: 'Bangalore',
-    },
-    {
-      period: '2024',
-      role: 'Fellowship in Interventional Pulmonology',
-      organization: 'Yashoda Hospitals, Somajiguda',
     },
     {
       period: '2021 – 2022',

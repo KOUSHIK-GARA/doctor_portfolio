@@ -23,6 +23,8 @@ export interface Doctor {
   address: string;
   bio: string;
   heroImage: string;
+  /** Hospital OPD timing shown under the address in the footer. */
+  locationHours: string;
   /** Social profiles rendered in the footer. */
   socials: SocialLink[];
   /** Clinic opening hours rendered in the footer. */
@@ -65,6 +67,8 @@ export interface EducationItem {
   year: string;
   degree: string;
   institution: string;
+  /** Short category label rendered as a pill on the education card. */
+  tag?: string;
 }
 
 export interface ExperienceItem {
