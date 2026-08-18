@@ -1,3 +1,17 @@
+export type SocialPlatform = 'facebook' | 'instagram' | 'linkedin' | 'youtube';
+
+export interface SocialLink {
+  platform: SocialPlatform;
+  url: string;
+}
+
+export interface ClinicHours {
+  /** e.g. "Mon – Sat" */
+  label: string;
+  /** e.g. "10:00 AM – 6:00 PM" or "Closed" */
+  value: string;
+}
+
 export interface Doctor {
   name: string;
   title: string;
@@ -9,6 +23,10 @@ export interface Doctor {
   address: string;
   bio: string;
   heroImage: string;
+  /** Social profiles rendered in the footer. */
+  socials: SocialLink[];
+  /** Clinic opening hours rendered in the footer. */
+  hours: ClinicHours[];
 }
 
 export interface HeroStat {
@@ -31,6 +49,8 @@ export interface GalleryItem {
   src: string;
   alt: string;
   caption: string;
+  /** Optional CSS object-position to fine-tune the crop, e.g. "50% 30%". */
+  objectPosition?: string;
 }
 
 export interface ExpertiseArea {

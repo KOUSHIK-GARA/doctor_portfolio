@@ -1,4 +1,4 @@
-import { Mail, Phone } from 'lucide-react';
+import { ArrowRight, Mail, Phone } from 'lucide-react';
 import type { Doctor } from '../../types/portfolio';
 
 interface AppointmentProps {
@@ -13,21 +13,34 @@ export function Appointment({ doctor }: AppointmentProps) {
         <h2>
           Let&apos;s take the next step <span>together.</span>
         </h2>
-        <p>Have a question or need an appointment? Get in touch with the clinic.</p>
+        <p>
+          Have a question or need an appointment? Get in touch with the clinic. We&apos;re here to
+          help.
+        </p>
       </div>
       <div className="contactCards">
-        <a href={`tel:${doctor.phone}`}>
-          <Phone />
-          <span>
+        <a href={`tel:${doctor.phone.replace(/\s+/g, '')}`}>
+          <span className="ccIcon">
+            <Phone />
+          </span>
+          <span className="ccText">
             <small>Call us</small>
             <b>{doctor.phone}</b>
           </span>
+          <span className="ccArrow" aria-hidden="true">
+            <ArrowRight />
+          </span>
         </a>
         <a href={`mailto:${doctor.email}`}>
-          <Mail />
-          <span>
+          <span className="ccIcon">
+            <Mail />
+          </span>
+          <span className="ccText">
             <small>Email</small>
             <b>{doctor.email}</b>
+          </span>
+          <span className="ccArrow" aria-hidden="true">
+            <ArrowRight />
           </span>
         </a>
       </div>

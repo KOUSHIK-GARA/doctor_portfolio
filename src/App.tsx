@@ -32,8 +32,8 @@ export function App() {
         <Hero doctor={doctor} content={hero} />
         <About content={about} education={education} memberships={memberships} />
         <Expertise areas={expertise} image={expertiseImage} imageAlt={expertiseImageAlt} />
-        <Gallery items={gallery} achievements={achievements} />
-        <Experience experience={experience} />
+        <Gallery items={gallery} />
+        <Experience experience={experience} achievements={achievements} />
         <Appointment doctor={doctor} />
       </main>
 

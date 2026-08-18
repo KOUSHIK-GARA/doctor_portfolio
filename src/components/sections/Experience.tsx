@@ -1,10 +1,12 @@
+import { Award } from 'lucide-react';
 import type { ExperienceItem } from '../../types/portfolio';
 
 interface ExperienceProps {
   experience: ExperienceItem[];
+  achievements: string[];
 }
 
-export function Experience({ experience }: ExperienceProps) {
+export function Experience({ experience, achievements }: ExperienceProps) {
   return (
     <section id="experience" className="section">
       <div className="sectionTag">CAREER JOURNEY</div>
@@ -24,6 +26,18 @@ export function Experience({ experience }: ExperienceProps) {
           </li>
         ))}
       </ol>
+
+      <div className="recognition">
+        <h3>Recognition &amp; awards</h3>
+        <ul className="recognitionGrid">
+          {achievements.map((achievement) => (
+            <li className="award" key={achievement}>
+              <Award />
+              <span>{achievement}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }

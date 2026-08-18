@@ -11,6 +11,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Offset in-page scroll targets so the sticky header doesn't cover them */
+:where(section, footer)[id] {
+  scroll-margin-top: 92px;
+}
+
 body {
   margin: 0;
   font-family: 'DM Sans', sans-serif;
@@ -518,27 +523,28 @@ header {
   line-height: 1.6;
 }
 
-/* Top zone: symmetric card columns flanking a centred hero photo */
+/* Top zone: three cards per side flanking a centred hero photo. */
 .expGrid {
   display: grid;
-  grid-template-columns: 1fr 1.02fr 1fr;
+  grid-template-columns: 1fr 1.05fr 1fr;
   gap: 24px;
   align-items: stretch;
 }
 
-/* Two cards per side spread to align with the photo's top and bottom edges */
+/* Each side is a vertical stack of three cards; the gap spaces them apart. */
 .expCol {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 20px;
+  gap: 24px;
   min-width: 0;
 }
 
 /* Centre hero photo with a soft teal accent shape behind it */
 .expHero {
+  grid-column: 2;
   position: relative;
-  min-height: 380px;
+  min-width: 0;
+  min-height: 420px;
 }
 
 .expHeroShape {
@@ -573,13 +579,14 @@ header {
 .expBottom {
   margin-top: 24px;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
 /* Shared expertise card */
 .expCard {
   position: relative;
+  min-width: 0;
   background: #fff;
   border: 1px solid #e7f0ef;
   border-radius: 18px;
@@ -835,51 +842,118 @@ header {
 }
 
 /* ==========================================================================
-   Gallery (in practice)
+   Gallery (in practice) — carousel
    ========================================================================== */
-.gallery {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
+.carousel {
   margin-top: 45px;
 }
 
-.galleryItem {
+.carouselViewport {
   position: relative;
-  margin: 0;
-  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 18px 45px #0d505015;
+  border-radius: 22px;
+  height: clamp(360px, 55vw, 624px);
+  background: #06343a;
+  box-shadow: 0 26px 60px #0d50501f;
 }
 
-.galleryItem:first-child {
-  grid-column: 1 / -1;
+.carouselTrack {
+  display: flex;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.65, 0.05, 0.2, 1);
+  will-change: transform;
 }
 
-.galleryItem img {
+.carouselSlide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.carouselSlide img {
   display: block;
   width: 100%;
-}
-
-.galleryItem:first-child img {
-  height: auto;
-}
-
-.galleryItem:not(:first-child) img {
-  height: 440px;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
-.galleryItem figcaption {
+.carouselSlide figcaption {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 34px 18px 14px;
-  font-size: 13px;
+  padding: 46px 22px 18px;
+  font-size: 15px;
   font-weight: 600;
   color: #fff;
-  background: linear-gradient(transparent, rgba(6, 44, 48, 0.82));
+  background: linear-gradient(transparent, rgba(4, 32, 35, 0.86));
+}
+
+/* Small, unobtrusive prev / next controls */
+.carouselControls {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+
+.carouselBtn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  color: #0b7c7f;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 20px rgba(4, 32, 35, 0.3);
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.carouselBtn:hover {
+  background: #0b7c7f;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.carouselBtn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.carouselDots {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+.carouselDots button {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background: #cbdedd;
+  transition:
+    width 0.22s ease,
+    background 0.22s ease,
+    border-radius 0.22s ease;
+}
+
+.carouselDots button.active {
+  width: 26px;
+  border-radius: 6px;
+  background: #0b7c7f;
 }
 
 /* ==========================================================================
@@ -909,28 +983,59 @@ header {
 
 .contactCards {
   display: grid;
-  gap: 12px;
-  min-width: 330px;
+  gap: 14px;
+  min-width: 360px;
 }
 
 .contactCards a {
   background: #fff;
   color: #17383e;
   text-decoration: none;
-  border-radius: 14px;
-  padding: 17px;
+  border-radius: 16px;
+  padding: 15px 17px;
   display: flex;
   gap: 14px;
   align-items: center;
+  border: 1px solid transparent;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
-.contactCards svg {
+.contactCards a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(3, 30, 33, 0.35);
+}
+
+.contactCards .ccIcon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #e7f4f1;
   color: #0b7c7f;
+}
+
+.contactCards .ccIcon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.contactCards .ccText {
+  flex: 1;
+  min-width: 0;
 }
 
 .contactCards small,
 .contactCards b {
   display: block;
+}
+
+.contactCards b {
+  font-size: 15px;
+  word-break: break-word;
 }
 
 .contactCards small {
@@ -939,37 +1044,239 @@ header {
   margin-bottom: 3px;
 }
 
+.contactCards .ccArrow {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #0b7c7f;
+  color: #fff;
+}
+
+.contactCards .ccArrow svg {
+  width: 17px;
+  height: 17px;
+}
+
 /* ==========================================================================
    Footer
    ========================================================================== */
 footer {
-  background: #083a40;
-  color: #c9dcde;
-  padding: 45px max(24px, calc((100% - 1180px) / 2));
-  text-align: center;
+  background: #0a3f45;
+  color: #b3cccf;
 }
 
-footer .brand {
-  justify-content: center;
+.footerMain {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 58px 24px 44px;
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1.1fr;
+  gap: 44px;
 }
 
-footer p {
-  font-size: 13px;
+/* Brand column */
+.footerBrandCol .brand {
+  justify-content: flex-start;
+  color: #fff;
 }
 
-.footerInfo {
+.footerRule {
+  display: block;
+  width: 46px;
+  height: 3px;
+  border-radius: 3px;
+  background: #16b7ac;
+  margin: 16px 0 14px;
+}
+
+.footerBrandCol > p {
+  margin: 0 0 22px;
+  max-width: 300px;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.socials {
   display: flex;
-  justify-content: center;
-  gap: 28px;
-  flex-wrap: wrap;
-  margin: 25px 0;
+  gap: 12px;
 }
 
-.footerInfo span {
+.socials a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #0e4c53;
+  border: 1px solid #17595f;
+  color: #cfe6e7;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.socials a:hover {
+  background: #0b7c7f;
+  border-color: #0b7c7f;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.socials svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* Contact + hours share a common icon + heading treatment */
+.footerContact {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
-  gap: 6px;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.footerContact li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.fIcon {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: #0e4c53;
+  color: #4fd0c6;
+}
+
+.fIcon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.footerContact b {
+  display: block;
+  margin-bottom: 3px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.footerContact a,
+.footerContact div > span {
+  color: #a7c4c6;
+  font-size: 13.5px;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.footerContact a:hover {
+  color: #fff;
+}
+
+/* Hours */
+.footerHours {
+  margin-bottom: 22px;
+}
+
+.footerHoursHead {
+  display: flex;
   align-items: center;
-  font-size: 12px;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.footerHoursHead b {
+  color: #fff;
+  font-size: 15px;
+}
+
+.footerHours ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.footerHours li {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  font-size: 13.5px;
+}
+
+.footerHours li span:first-child {
+  color: #a7c4c6;
+}
+
+.footerHours li span:last-child {
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* Mini appointment card */
+.footerCta {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid #17595f;
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.footerCta b {
+  display: block;
+  margin-bottom: 6px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.footerCta p {
+  margin: 0 0 14px;
+  font-size: 12.5px;
+  color: #a7c4c6;
+}
+
+.footerCtaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #0b7c7f;
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 10px;
+  transition: background 0.18s ease;
+}
+
+.footerCtaBtn:hover {
+  background: #0e9498;
+}
+
+/* Bottom bar */
+.footerBar {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #8bacaf;
+}
+
+.footerBar svg {
+  color: #4fd0c6;
 }
 
 /* ==========================================================================
@@ -992,12 +1299,26 @@ footer p {
 /* ==========================================================================
    Responsive
    ========================================================================== */
-@media (max-width: 1150px) {
-  .expBottom {
-    grid-template-columns: repeat(3, 1fr);
+/* Tablet landscape: the expertise photo moves to the top and the six cards
+   flow two-up beneath it. */
+@media (max-width: 1080px) {
+  .section {
+    padding: 84px 24px;
+  }
+
+  .expGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .expHero {
+    grid-column: 1 / -1;
+    order: -1;
+    min-height: 300px;
+    max-height: 380px;
   }
 }
 
+/* Tablet portrait / large phones */
 @media (max-width: 850px) {
   .nav nav {
     display: none;
@@ -1070,34 +1391,11 @@ footer p {
   }
 
   .recognitionGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-
-  .galleryItem:not(:first-child) img {
-    height: auto;
-  }
-
-  /* Expertise collapses: header, hero photo, then cards stack */
-  .expGrid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .expHero {
-    order: -1;
-    min-height: 320px;
-  }
-
-  .expCol {
-    justify-content: flex-start;
+    grid-template-columns: 1fr 1fr;
   }
 
   .expBottom {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .expValues {
@@ -1112,15 +1410,52 @@ footer p {
     margin-top: 30px;
   }
 
+  .footerMain {
+    grid-template-columns: 1fr 1fr;
+    gap: 34px;
+  }
+
   .hero h1 {
-    font-size: 48px;
+    font-size: 46px;
+  }
+
+  .section h2,
+  .appointment h2 {
+    font-size: 38px;
   }
 }
 
-@media (max-width: 520px) {
-  .expBottom,
-  .expValues {
+/* Phones */
+@media (max-width: 600px) {
+  .section {
+    padding: 60px 20px;
+  }
+
+  /* Everything stacks into a single column */
+  .expGrid {
     grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .expHero {
+    min-height: 280px;
+    max-height: 340px;
+  }
+
+  .expBottom,
+  .expValues,
+  .recognitionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .contactCards {
+    min-width: 0;
+  }
+
+  .footerMain {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 48px 20px 36px;
   }
 
   .trust {
@@ -1132,12 +1467,27 @@ footer p {
     padding-bottom: 60px;
   }
 
-  .section {
-    padding: 70px 20px;
+  .hero h1 {
+    font-size: 34px;
   }
 
   .section h2,
   .appointment h2 {
-    font-size: 36px;
+    font-size: 30px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  .section {
+    padding: 52px 16px;
+  }
+
+  .expCard {
+    padding: 20px 40px 20px 18px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
   }
 }

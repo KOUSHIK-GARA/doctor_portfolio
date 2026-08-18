@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import { HeartPulse, Menu, X } from 'lucide-react';
 import { NAV_LINKS } from '../../constants/navigation';
 import { useDisclosure } from '../../hooks/useDisclosure';
@@ -9,10 +10,19 @@ interface HeaderProps {
 export function Header({ brandName }: HeaderProps) {
   const menu = useDisclosure();
 
+  // Smooth-scroll to the target section without pushing the hash onto the URL.
+  const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    menu.close();
+    const target = document.getElementById(href.replace(/^#/, ''));
+    if (!target) return;
+    event.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <header>
       <div className="nav">
-        <a className="brand" href="#home" onClick={menu.close}>
+        <a className="brand" href="#home" onClick={(event) => handleNavClick(event, '#home')}>
           <HeartPulse size={28} />
           <span>{brandName}</span>
         </a>
@@ -29,11 +39,15 @@ export function Header({ brandName }: HeaderProps) {
 
         <nav className={menu.isOpen ? 'show' : ''}>
           {NAV_LINKS.map((link) => (
-            <a key={link.href} href={link.href} onClick={menu.close}>
+            <a key={link.href} href={link.href} onClick={(event) => handleNavClick(event, link.href)}>
               {link.label}
             </a>
           ))}
-          <a className="navbtn" href="#appointment" onClick={menu.close}>
+          <a
+            className="navbtn"
+            href="#appointment"
+            onClick={(event) => handleNavClick(event, '#appointment')}
+          >
             Book Appointment
           </a>
         </nav>

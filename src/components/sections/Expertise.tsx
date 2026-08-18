@@ -72,9 +72,9 @@ export function Expertise({ areas, image, imageAlt }: ExpertiseProps) {
     Icon: EXPERTISE_ICONS[index] ?? HeartPulse,
   }));
 
-  const leftCards = cards.slice(0, 2);
-  const rightCards = cards.slice(2, 4);
-  const bottomCards = cards.slice(4);
+  const leftCards = cards.slice(0, 3);
+  const rightCards = cards.slice(3, 6);
+  const bottomCards = cards.slice(6);
 
   return (
     <section id="expertise" className="section tinted">
@@ -94,7 +94,7 @@ export function Expertise({ areas, image, imageAlt }: ExpertiseProps) {
         </div>
 
         <div className="expHero">
-          <span className="expHeroShape" aria-hidden="true" />
+          {/* <span className="expHeroShape" aria-hidden="true" /> */}
           <div className="expHeroImg">
             <img src={image} alt={imageAlt} loading="lazy" />
           </div>

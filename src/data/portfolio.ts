@@ -3,6 +3,7 @@ import heroImage from '../assets/images/dr-chaitanya-kiran.jpg';
 import consultationImage from '../assets/images/consultation.jpg';
 import collageImage from '../assets/images/interventional-collage.jpg';
 import bronchoscopyImage1 from '../assets/images/bronchoscopy-01.jpg';
+import bronchoscopyImage2 from '../assets/images/bronchoscopy-02.jpg';
 
 /**
  * Single, typed source of truth for all website content.
@@ -32,6 +33,15 @@ export const portfolio: PortfolioData = {
     address: 'Manipal Hospitals, Bhubaneswar',
     bio: 'Dr. G. Chaitanya Kiran is a Consultant Interventional Pulmonologist and Sleep Medicine specialist trained at Yashoda Hospitals and Singapore General Hospital. He offers advanced diagnostic and therapeutic airway interventions for adults and children, alongside comprehensive sleep, asthma and respiratory critical care.',
     heroImage,
+    socials: [
+      { platform: 'facebook', url: 'https://www.facebook.com/CHITTI2301' },
+      { platform: 'instagram', url: 'https://www.instagram.com/urstruly_chitti/' },
+      { platform: 'linkedin', url: 'https://www.linkedin.com/in/chaitanya-kiran-9718b1344/' },
+    ],
+    hours: [
+      { label: 'Mon – Sat', value: '10:00 AM – 6:00 PM' },
+      { label: 'Sunday', value: 'Closed' },
+    ],
   },
   hero: {
     eyebrow: 'Interventional Pulmonology & Sleep Medicine',
@@ -116,7 +126,21 @@ export const portfolio: PortfolioData = {
       src: collageImage,
       alt: 'Dr. Chaitanya Kiran performing a range of interventional pulmonology procedures',
       caption: 'Interventional pulmonology in action',
-    }
+    },
+    {
+      src: bronchoscopyImage1,
+      alt: 'Dr. Chaitanya Kiran performing a bedside bronchoscopy',
+      caption: 'Bedside bronchoscopy at the point of care',
+      // Shift the crop down to reveal more of the top of the frame.
+      objectPosition: '50% 28%',
+    },
+    {
+      src: bronchoscopyImage2,
+      alt: 'Dr. Chaitanya Kiran visualising the airway during a bronchoscopy',
+      caption: 'Live airway visualisation during the procedure',
+      // Shift the crop up to reveal more of the lower part of the frame.
+      objectPosition: '50% 68%',
+    },
   ],
   education: [
     {
