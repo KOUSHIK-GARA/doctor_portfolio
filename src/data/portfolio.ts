@@ -1,5 +1,8 @@
 import type { PortfolioData } from '../types/portfolio';
 import heroImage from '../assets/images/dr-chaitanya-kiran.jpg';
+import consultationImage from '../assets/images/consultation.jpg';
+import collageImage from '../assets/images/interventional-collage.jpg';
+import bronchoscopyImage1 from '../assets/images/bronchoscopy-01.jpg';
 
 /**
  * Single, typed source of truth for all website content.
@@ -25,7 +28,7 @@ export const portfolio: PortfolioData = {
     ],
     location: 'Bhubaneswar, Odisha',
     phone: '+91 9494204143',
-    email: 'appointments@example.com',
+    email: 'dr.chaitanyakiran2301.ck@gmail.com',
     address: 'Manipal Hospitals, Bhubaneswar',
     bio: 'Dr. G. Chaitanya Kiran is a Consultant Interventional Pulmonologist and Sleep Medicine specialist trained at Yashoda Hospitals and Singapore General Hospital. He offers advanced diagnostic and therapeutic airway interventions for adults and children, alongside comprehensive sleep, asthma and respiratory critical care.',
     heroImage,
@@ -40,11 +43,18 @@ export const portfolio: PortfolioData = {
   },
   about: {
     lead: 'Dr. G. Chaitanya Kiran provides advanced, evidence-based interventional pulmonology and sleep medicine care — from complex airway procedures to critical respiratory support for patients of all ages.',
+    image: consultationImage,
+    imageAlt: 'Dr. G. Chaitanya Kiran at his consultation clinic',
   },
   expertise: [
-    { title: 'Clinical Respiratory Care', details: [] },
+    {
+      title: 'Clinical Respiratory Care',
+      description: 'Comprehensive diagnosis and treatment of a wide range of respiratory disorders.',
+      details: [],
+    },
     {
       title: 'Adult Lung Interventions',
+      description: 'Advanced bronchoscopic and minimally invasive airway procedures for adults.',
       details: [
         'Flexible Bronchoscopy',
         'Thoracoscopy',
@@ -60,22 +70,27 @@ export const portfolio: PortfolioData = {
     },
     {
       title: 'Pediatric Lung Interventions',
+      description: 'Specialised, gentle care and advanced interventions for children with lung conditions.',
       details: ['Foreign Body Retrieval', 'Sleep Evaluation'],
     },
     {
       title: 'Sleep Medicine',
+      description: 'Evaluation and treatment of sleep disorders for better breathing and quality of rest.',
       details: ['OSA/OHS Management', 'Level 1 Sleep Study', 'PAP Titration'],
     },
     {
       title: 'Asthma & Allergy',
+      description: 'Expert care for asthma, allergies and other chronic respiratory conditions.',
       details: ['Skin Prick Testing', 'Immunology', 'Biologics'],
     },
     {
       title: 'Respiratory Critical Care',
+      description: 'Specialised intensive care for severe and critical respiratory illness.',
       details: ['Respiratory Failure', 'ARDS Management', 'ECMO Support'],
     },
     {
       title: 'Pulmonary Rehabilitation',
+      description: 'Personalised rehabilitation programs to improve lung function and quality of life.',
       details: [
         'Adult Vaccinations',
         'Chest Physiotherapy',
@@ -83,8 +98,25 @@ export const portfolio: PortfolioData = {
         'PEP Devices Training',
       ],
     },
-    { title: 'Lung Transplant Assessment', details: [] },
-    { title: 'Lung Cancer Screening & Diagnosis', details: [] },
+    {
+      title: 'Lung Transplant Assessment',
+      description: 'Thorough evaluation and work-up for lung transplant candidacy.',
+      details: [],
+    },
+    {
+      title: 'Lung Cancer Screening & Diagnosis',
+      description: 'Early detection and accurate diagnosis for better outcomes and long-term health.',
+      details: [],
+    },
+  ],
+  expertiseImage: bronchoscopyImage1,
+  expertiseImageAlt: 'Dr. G. Chaitanya Kiran performing a bronchoscopy procedure',
+  gallery: [
+    {
+      src: collageImage,
+      alt: 'Dr. Chaitanya Kiran performing a range of interventional pulmonology procedures',
+      caption: 'Interventional pulmonology in action',
+    }
   ],
   education: [
     {

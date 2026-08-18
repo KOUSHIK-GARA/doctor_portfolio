@@ -227,6 +227,25 @@ header {
 /* ==========================================================================
    About
    ========================================================================== */
+.aboutTop {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.aboutImage img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 22px;
+  box-shadow: 0 24px 60px #0d505018;
+}
+
+.aboutIntro h2 {
+  margin-top: 12px;
+}
+
 .grid2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -234,72 +253,241 @@ header {
   margin-top: 45px;
 }
 
-.card,
-.service {
+/* Info cards (Education & Memberships) */
+.infoCard {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #f6fbfb, #ffffff);
   border: 1px solid #e2eded;
-  border-radius: 18px;
+  border-radius: 24px;
   padding: 28px;
-  background: #fff;
 }
 
-.card svg,
-.service svg {
-  color: #0b7c7f;
+/* Decorative dotted pattern in the corner */
+.infoCard::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 84px;
+  height: 84px;
+  background-image: radial-gradient(#cbe6e2 1.5px, transparent 1.6px);
+  background-size: 14px 14px;
+  opacity: 0.6;
+  pointer-events: none;
 }
 
-.card h3,
-.service h3 {
-  font-size: 20px;
-}
-
-.card ul {
-  padding-left: 20px;
-  line-height: 2;
-  color: #61777c;
-}
-
-/* Timeline (education & experience) */
-ul.timeline {
-  list-style: none;
-  padding: 0;
-  margin: 16px 0 0;
-}
-
-.timeline li {
+.infoHead {
+  position: relative;
   display: flex;
+  align-items: center;
   gap: 14px;
-  padding: 12px 0;
-  border-top: 1px solid #eef4f4;
+  margin-bottom: 28px;
 }
 
-.timeline li:first-child {
-  border-top: 0;
-  padding-top: 0;
+.infoBadge {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 15px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(145deg, #0b8f8a, #0a6a70);
+  box-shadow: 0 10px 22px rgba(11, 124, 127, 0.28);
 }
 
-.timeline-year {
-  flex: 0 0 110px;
-  font-weight: 700;
+.infoBadge svg {
+  width: 26px;
+  height: 26px;
+}
+
+.infoHead h3 {
+  margin: 0;
+  font-size: 22px;
+  color: #14303a;
+}
+
+.infoHead p {
+  margin: 4px 0 0;
   font-size: 13px;
-  color: #0b7c7f;
+  color: #6b8288;
 }
 
-.timeline b {
+.infoHead::after {
+  content: '';
+  position: absolute;
+  left: 66px;
+  bottom: -13px;
+  width: 46px;
+  height: 3px;
+  border-radius: 3px;
+  background: #0b7c7f;
+}
+
+/* Education timeline */
+.eduTimeline {
+  list-style: none;
+  position: relative;
+  margin: 6px 0 0;
+  padding: 0;
+}
+
+.eduTimeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: #d0e7e4;
+}
+
+.eduItem {
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 20px;
+}
+
+.eduItem:last-child {
+  margin-bottom: 0;
+}
+
+.eduNode {
+  position: absolute;
+  left: 0;
+  top: 22px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #0b7c7f;
+}
+
+.eduCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #fff;
+  border: 1px solid #e6f0ef;
+  border-radius: 14px;
+  padding: 15px 16px;
+  box-shadow: 0 8px 22px #0d505010;
+}
+
+.eduYear {
+  position: absolute;
+  top: -11px;
+  left: 16px;
+  background: #0c4f55;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+
+.eduIcon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #0b7c7f;
+  background: #e3f4f1;
+}
+
+.eduIcon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.eduText b {
   display: block;
   font-size: 15px;
+  line-height: 1.3;
   color: #16313a;
 }
 
-.timeline small {
+.eduText small {
   display: block;
-  margin-top: 3px;
-  font-size: 13px;
+  margin-top: 4px;
+  font-size: 12.5px;
   line-height: 1.5;
-  color: #718487;
+  color: #6b8288;
+}
+
+.eduItem:first-child .eduText small {
+  color: #0b7c7f;
+}
+
+/* Memberships list */
+.memList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.memItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(180deg, #f3faf9, #ffffff);
+  border: 1px solid #e6f0ef;
+  border-radius: 14px;
+  padding: 12px 14px;
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    border-color 0.16s ease;
+}
+
+.memItem:hover {
+  transform: translateX(2px);
+  border-color: #bfe0dd;
+  box-shadow: 0 10px 24px #0d50500f;
+}
+
+.memIcon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(145deg, #0b8f8a, #0a6a70);
+  box-shadow: 0 8px 18px rgba(11, 124, 127, 0.24);
+}
+
+.memIcon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.memName {
+  flex: 1;
+  font-size: 14.5px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #16313a;
+}
+
+.memChevron {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: #9bb3b8;
 }
 
 /* ==========================================================================
-   Services
+   Expertise — orbit / hub-and-spoke
    ========================================================================== */
 .tinted {
   max-width: none;
@@ -308,67 +496,390 @@ ul.timeline {
   background: #eef8f7;
 }
 
-.serviceGrid {
+/* Section header sits full-width above the card grid */
+.expHead {
+  max-width: 760px;
+  margin: 0 0 44px;
+}
+
+.expHead .sectionTag {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.expHead h2 {
+  margin: 0;
+}
+
+.expLead {
+  margin: 16px 0 0;
+  color: #5b7278;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Top zone: symmetric card columns flanking a centred hero photo */
+.expGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.02fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* Two cards per side spread to align with the photo's top and bottom edges */
+.expCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  min-width: 0;
+}
+
+/* Centre hero photo with a soft teal accent shape behind it */
+.expHero {
+  position: relative;
+  min-height: 380px;
+}
+
+.expHeroShape {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 62%;
+  height: 58%;
+  background: linear-gradient(150deg, #0f9a90, #0a5f66);
+  border-radius: 30px;
+  z-index: 0;
+}
+
+.expHeroImg {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 26px 60px #0d50502e;
+}
+
+.expHeroImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Keep the doctor's face in frame within the tall crop */
+  object-position: 50% 12%;
+}
+
+/* Bottom zone: the remaining areas in a single balanced row */
+.expBottom {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+/* Shared expertise card */
+.expCard {
+  position: relative;
+  background: #fff;
+  border: 1px solid #e7f0ef;
+  border-radius: 18px;
+  padding: 22px 46px 22px 22px;
+  box-shadow: 0 14px 34px #0d505012;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.expCard:hover {
+  transform: translateY(-3px);
+  border-color: #bfe3df;
+  box-shadow: 0 20px 42px #0d50501c;
+}
+
+.expCardHead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.expCardIcon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e7f4f1;
+  color: #0b7c7f;
+}
+
+.expCardIcon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.expCardHead h3 {
+  position: relative;
+  margin: 0;
+  padding-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #14303a;
+}
+
+.expCardHead h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 34px;
+  height: 2px;
+  border-radius: 2px;
+  background: #0b7c7f;
+}
+
+.expCard p {
+  margin: 0;
+  color: #6b8288;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.expCardArrow {
+  position: absolute;
+  top: 24px;
+  right: 18px;
+  width: 18px;
+  height: 18px;
+  color: #b6c9cd;
+}
+
+/* Value-proposition strip */
+.expValues {
+  margin-top: 30px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  background: #f2faf9;
+  border: 1px solid #e2efee;
+  border-radius: 18px;
+  padding: 22px 26px;
+}
+
+.expValue {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.expValueIcon {
+  flex-shrink: 0;
+  color: #0b7c7f;
+}
+
+.expValueIcon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.expValue b {
+  display: block;
+  font-size: 14px;
+  color: #0b7c7f;
+}
+
+.expValue small {
+  display: block;
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: #6b8288;
+}
+
+/* ==========================================================================
+   Experience — vertical milestone timeline
+   ========================================================================== */
+.timelineTrack {
+  list-style: none;
+  margin: 55px 0 0;
+  padding: 0;
+  position: relative;
+}
+
+/* The central spine */
+.timelineTrack::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(#0b7c7f, #bfe6e2);
+}
+
+.tl-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 48px 1fr;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.tl-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Node on the spine */
+.tl-marker {
+  grid-column: 2;
+  justify-self: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #0b7c7f;
+  box-shadow: 0 0 0 6px rgba(11, 124, 127, 0.12);
+  z-index: 1;
+}
+
+.tl-card {
+  grid-column: 1;
+  text-align: right;
+  border: 1px solid #e2eded;
+  border-radius: 16px;
+  padding: 18px 20px;
+  background: #fff;
+  box-shadow: 0 12px 30px #0d505010;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.tl-item:nth-child(even) .tl-card {
+  grid-column: 3;
+  text-align: left;
+}
+
+.tl-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px #0d505020;
+}
+
+.tl-period {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: #d9f1ef;
+  color: #0b7075;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.tl-card b {
+  display: block;
+  font-size: 15px;
+  color: #16313a;
+  line-height: 1.35;
+}
+
+.tl-card small {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #718487;
+}
+
+/* Recognition band */
+.recognition {
+  margin-top: 30px;
+  /*border-top: 1px solid #e7eeee;*/
+  padding-top: 40px;
+}
+
+.recognition h3 {
+  font-size: 20px;
+  margin: 0 0 22px;
+}
+
+.recognitionGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.award {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 20px;
+  border-radius: 16px;
+  background: #eef8f7;
+  border: 1px solid #dcefec;
+}
+
+.award svg {
+  flex: 0 0 auto;
+  color: #0b7c7f;
+}
+
+.award span {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #2d4a50;
+}
+
+/* ==========================================================================
+   Gallery (in practice)
+   ========================================================================== */
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 18px;
   margin-top: 45px;
 }
 
-.service {
-  border: none;
+.galleryItem {
+  position: relative;
+  margin: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 45px #0d505015;
 }
 
-.icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: #d9f1ef;
-  display: grid;
-  place-items: center;
+.galleryItem:first-child {
+  grid-column: 1 / -1;
 }
 
-.service p {
-  color: #718487;
-  line-height: 1.7;
+.galleryItem img {
+  display: block;
+  width: 100%;
 }
 
-.tags {
-  list-style: none;
-  padding: 0;
-  margin: 14px 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+.galleryItem:first-child img {
+  height: auto;
 }
 
-.tags li {
-  font-size: 12px;
-  font-weight: 500;
-  color: #0b7075;
-  background: #d9f1ef;
-  border-radius: 999px;
-  padding: 5px 11px;
+.galleryItem:not(:first-child) img {
+  height: 440px;
+  object-fit: cover;
 }
 
-/* ==========================================================================
-   Experience & achievements
-   ========================================================================== */
-.expLayout {
-  display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: 24px;
-  margin-top: 40px;
-  align-items: start;
-}
-
-.experienceList {
-  margin-top: 0;
-}
-
-.achievements {
-  position: sticky;
-  top: 96px;
+.galleryItem figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 34px 18px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(transparent, rgba(6, 44, 48, 0.82));
 }
 
 /* ==========================================================================
@@ -481,6 +992,12 @@ footer p {
 /* ==========================================================================
    Responsive
    ========================================================================== */
+@media (max-width: 1150px) {
+  .expBottom {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 850px) {
   .nav nav {
     display: none;
@@ -520,16 +1037,70 @@ footer p {
     left: 15px;
   }
 
-  .grid2,
-  .expLayout {
+  .aboutTop,
+  .grid2 {
     grid-template-columns: 1fr;
   }
 
-  .achievements {
-    position: static;
+  .aboutTop {
+    gap: 28px;
   }
 
-  .serviceGrid {
+  /* Timeline collapses to a single left-aligned rail */
+  .timelineTrack::before {
+    left: 7px;
+  }
+
+  .tl-item {
+    grid-template-columns: 1fr;
+    padding-left: 34px;
+  }
+
+  .tl-marker {
+    position: absolute;
+    left: 0;
+    top: 20px;
+    grid-column: auto;
+  }
+
+  .tl-card,
+  .tl-item:nth-child(even) .tl-card {
+    grid-column: 1;
+    text-align: left;
+  }
+
+  .recognitionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .galleryItem:not(:first-child) img {
+    height: auto;
+  }
+
+  /* Expertise collapses: header, hero photo, then cards stack */
+  .expGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .expHero {
+    order: -1;
+    min-height: 320px;
+  }
+
+  .expCol {
+    justify-content: flex-start;
+  }
+
+  .expBottom {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+
+  .expValues {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -547,7 +1118,8 @@ footer p {
 }
 
 @media (max-width: 520px) {
-  .serviceGrid {
+  .expBottom,
+  .expValues {
     grid-template-columns: 1fr;
   }
 

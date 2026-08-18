@@ -43,8 +43,9 @@ Top-level content keys:
 
 - `doctor` — profile, credentials and contact information
 - `hero` — hero eyebrow label and highlight stats
-- `about` — the about-section lead paragraph
+- `about` — the about-section lead paragraph and clinic photo
 - `expertise` — areas of expertise (`title` + optional `details`)
+- `gallery` — "in practice" photos (`src`, `alt`, `caption`)
 - `education` — qualifications (`year`, `degree`, `institution`)
 - `experience` — roles & fellowships (`period`, `role`, `organization`)
 - `achievements` — awards and recognitions
@@ -94,7 +95,7 @@ src/
 │  └─ useDisclosure.ts      # Open/close state helper
 └─ components/
    ├─ layout/               # Header, Footer
-   ├─ sections/             # Hero, About, Expertise, Experience, Appointment
+   ├─ sections/             # Hero, About, Expertise, Gallery, Experience, Appointment
    └─ ui/                   # ChatButton
 ```
 

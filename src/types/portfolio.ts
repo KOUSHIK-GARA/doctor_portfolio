@@ -23,10 +23,20 @@ export interface Hero {
 
 export interface About {
   lead: string;
+  image: string;
+  imageAlt: string;
+}
+
+export interface GalleryItem {
+  src: string;
+  alt: string;
+  caption: string;
 }
 
 export interface ExpertiseArea {
   title: string;
+  /** One-line summary shown on the expertise card. */
+  description: string;
   /** Optional list of procedures / sub-specialities under this area. */
   details: string[];
 }
@@ -48,6 +58,10 @@ export interface PortfolioData {
   hero: Hero;
   about: About;
   expertise: ExpertiseArea[];
+  /** Centerpiece photo shown in the middle of the expertise orbit. */
+  expertiseImage: string;
+  expertiseImageAlt: string;
+  gallery: GalleryItem[];
   education: EducationItem[];
   experience: ExperienceItem[];
   achievements: string[];
