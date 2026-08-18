@@ -6,7 +6,6 @@ import { Experience } from './components/sections/Experience';
 import { Expertise } from './components/sections/Expertise';
 import { Gallery } from './components/sections/Gallery';
 import { Hero } from './components/sections/Hero';
-import { ChatButton } from './components/ui/ChatButton';
 import { portfolio } from './data/portfolio';
 
 export function App() {
@@ -38,7 +37,6 @@ export function App() {
       </main>
 
       <Footer doctor={doctor} />
-      <ChatButton />
     </>
   );
 }
