@@ -343,12 +343,12 @@ header {
 
 .eduCard2 {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 18px;
   background: linear-gradient(180deg, #f9fdfc, #ffffff);
   border: 1px solid #e6f0ef;
   border-radius: 20px;
-  padding: 22px 24px;
+  padding: 12px 14px;
   box-shadow: 0 10px 26px #0d50500f;
   transition:
     transform 0.16s ease,
@@ -394,7 +394,7 @@ header {
 }
 
 .eduTag {
-  display: inline-block;
+  display: none;
   margin-top: 14px;
   padding: 5px 12px;
   border-radius: 999px;
