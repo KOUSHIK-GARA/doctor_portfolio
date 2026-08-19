@@ -71,6 +71,10 @@ header {
   color: #fff !important;
   padding: 12px 18px;
   border-radius: 9px;
+  border: 0;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 .menu {
@@ -1065,6 +1069,317 @@ header {
   height: 17px;
 }
 
+/* Booking form (rendered inside the modal) */
+.apptForm {
+  display: block;
+}
+
+.apptField {
+  margin-bottom: 16px;
+}
+
+.apptField label,
+.apptFieldLabel {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #45636a;
+}
+
+.apptField input,
+.apptField textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #d8e5e4;
+  border-radius: 12px;
+  background: #f8fbfb;
+  font: inherit;
+  font-size: 14px;
+  color: #17383e;
+  transition:
+    border-color 0.16s ease,
+    box-shadow 0.16s ease,
+    background 0.16s ease;
+}
+
+.apptField textarea {
+  resize: vertical;
+  min-height: 84px;
+}
+
+.apptField input::placeholder,
+.apptField textarea::placeholder {
+  color: #9db3b7;
+}
+
+.apptField input:focus,
+.apptField textarea:focus {
+  outline: none;
+  background: #fff;
+  border-color: #0b7c7f;
+  box-shadow: 0 0 0 3px rgba(11, 124, 127, 0.14);
+}
+
+.apptField input[aria-invalid='true'] {
+  border-color: #e0655c;
+  background: #fff6f5;
+}
+
+.apptError {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #c2453b;
+}
+
+/* Rounded time-slot chips */
+.slotGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.slotBtn {
+  border: 1px solid #d8e5e4;
+  background: #f8fbfb;
+  color: #2b4a51;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.14s ease,
+    border-color 0.14s ease,
+    color 0.14s ease;
+}
+
+.slotBtn:hover {
+  border-color: #0b7c7f;
+}
+
+.slotBtn.selected {
+  background: #0b7c7f;
+  border-color: #0b7c7f;
+  color: #fff;
+}
+
+.btnBook {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 6px;
+  padding: 14px 18px;
+  border: 0;
+  border-radius: 12px;
+  background: #0b7c7f;
+  color: #fff;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease;
+}
+
+.btnBook:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(11, 124, 127, 0.3);
+}
+
+.btnBook:disabled {
+  opacity: 0.7;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+.btnBook svg {
+  width: 18px;
+  height: 18px;
+}
+
+.apptNote {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: #7d959a;
+  text-align: center;
+  max-width: none;
+}
+
+/* Date picker (react-datepicker) */
+.apptDatePicker,
+.apptDatePicker .react-datepicker-wrapper {
+  display: block;
+  width: 100%;
+}
+
+.apptDatePicker .react-datepicker__input-container {
+  display: block;
+}
+
+.apptDatePicker input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #d8e5e4;
+  border-radius: 12px;
+  background: #f8fbfb;
+  font: inherit;
+  font-size: 14px;
+  color: #17383e;
+  cursor: pointer;
+}
+
+.apptDatePicker input:focus {
+  outline: none;
+  background: #fff;
+  border-color: #0b7c7f;
+  box-shadow: 0 0 0 3px rgba(11, 124, 127, 0.14);
+}
+
+.react-datepicker {
+  font-family: inherit;
+  border-color: #dcebe9;
+}
+
+.react-datepicker__header {
+  background: #eef8f6;
+  border-bottom-color: #dcebe9;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background: #0b7c7f;
+}
+
+.react-datepicker__day--selected:hover {
+  background: #0a6a70;
+}
+
+/* Modal shell */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 5vh 16px 16px;
+  background: rgba(6, 32, 35, 0.55);
+  overflow-y: auto;
+  animation: fadeIn 0.18s ease;
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  border-radius: 22px;
+  padding: 28px 28px 24px;
+  box-shadow: 0 40px 80px rgba(3, 30, 33, 0.4);
+  animation: popIn 0.2s ease;
+}
+
+.modalClose {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: #f0f5f5;
+  color: #45636a;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.16s ease;
+}
+
+.modalClose:hover {
+  background: #e2ecec;
+}
+
+.modalClose svg {
+  width: 18px;
+  height: 18px;
+}
+
+.modalHead {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 22px;
+  padding-right: 36px;
+}
+
+.modalHeadIcon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(145deg, #0b8f8a, #0a6a70);
+}
+
+.modalHeadIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.modalHead h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #14303a;
+}
+
+.modalHead p {
+  margin: 3px 0 0;
+  font-size: 13px;
+  color: #6b8288;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.spin {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* ==========================================================================
    Footer
    ========================================================================== */
@@ -1264,10 +1579,13 @@ footer {
   background: #0b7c7f;
   color: #fff;
   text-decoration: none;
+  font: inherit;
   font-size: 13px;
   font-weight: 600;
   padding: 10px 16px;
+  border: 0;
   border-radius: 10px;
+  cursor: pointer;
   transition: background 0.18s ease;
 }
 
@@ -1451,6 +1769,10 @@ footer {
   .recognitionGrid,
   .eduGrid {
     grid-template-columns: 1fr;
+  }
+
+  .modal {
+    padding: 24px 20px 20px;
   }
 
   .contactCards {

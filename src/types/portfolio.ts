@@ -77,6 +77,41 @@ export interface ExperienceItem {
   organization: string;
 }
 
+export interface BookingConfig {
+  /**
+   * WhatsApp number in international format, digits only (no "+" or spaces),
+   * e.g. "919494204143". Used as the delivery recipient.
+   */
+  whatsappNumber: string;
+  /**
+   * Selectable appointment time slots shown in the booking form, e.g.
+   * "5:00 PM". Keep them rounded (":00" / ":30").
+   */
+  timeSlots: string[];
+  /**
+   * PREFERRED direct-send path. A serverless endpoint (e.g. Cloudflare Worker /
+   * Vercel function) that receives the request as JSON and forwards it to the
+   * clinic's WhatsApp via the WhatsApp Cloud API. When set, submissions POST
+   * here and NO WhatsApp window is opened.
+   */
+  relayEndpoint: string;
+  /**
+   * QUICK no-backend direct-send path. A free CallMeBot API key that delivers a
+   * WhatsApp message to `whatsappNumber` via a URL call (fire-and-forget, no
+   * WhatsApp window). Get one at https://www.callmebot.com/blog/free-api-whatsapp-messages/.
+   */
+  callmebotApiKey: string;
+  /**
+   * Feature flag for the (deferred) email request flow.
+   */
+  enableEmail: boolean;
+  /**
+   * Web3Forms access key used to deliver appointment requests by email once
+   * `enableEmail` is turned on. Get a free key at https://web3forms.com.
+   */
+  web3formsAccessKey: string;
+}
+
 export interface PortfolioData {
   doctor: Doctor;
   hero: Hero;
@@ -90,4 +125,5 @@ export interface PortfolioData {
   experience: ExperienceItem[];
   achievements: string[];
   memberships: string[];
+  booking: BookingConfig;
 }

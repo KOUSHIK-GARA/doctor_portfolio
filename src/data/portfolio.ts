@@ -274,4 +274,30 @@ export const portfolio: PortfolioData = {
     'Indian Association of Bronchology',
     'World Association of Bronchology & Interventional Pulmonology',
   ],
+  booking: {
+    // WhatsApp number in international format, digits only.
+    whatsappNumber: '919390093095',
+    // Rounded evening slots (clinic hours 5:30–9:30 PM). Edit freely.
+    timeSlots: [
+      '5:00 PM',
+      '5:30 PM',
+      '6:00 PM',
+      '6:30 PM',
+      '7:00 PM',
+      '7:30 PM',
+      '8:00 PM',
+      '8:30 PM',
+      '9:00 PM',
+      '9:30 PM',
+    ],
+    // Direct-send options (no WhatsApp window opens when either is set):
+    //   1. relayEndpoint  — serverless URL that calls the WhatsApp Cloud API.
+    //   2. callmebotApiKey — free CallMeBot key that messages the number above.
+    // Leave both empty to temporarily fall back to opening WhatsApp (wa.me).
+    relayEndpoint: '',
+    callmebotApiKey: '',
+    // Deferred email flow.
+    enableEmail: false,
+    web3formsAccessKey: '',
+  },
 };

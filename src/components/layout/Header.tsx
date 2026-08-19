@@ -5,9 +5,10 @@ import { useDisclosure } from '../../hooks/useDisclosure';
 
 interface HeaderProps {
   brandName: string;
+  onBook: () => void;
 }
 
-export function Header({ brandName }: HeaderProps) {
+export function Header({ brandName, onBook }: HeaderProps) {
   const menu = useDisclosure();
 
   // Smooth-scroll to the target section without pushing the hash onto the URL.
@@ -43,13 +44,16 @@ export function Header({ brandName }: HeaderProps) {
               {link.label}
             </a>
           ))}
-          <a
+          <button
             className="navbtn"
-            href="#appointment"
-            onClick={(event) => handleNavClick(event, '#appointment')}
+            type="button"
+            onClick={() => {
+              menu.close();
+              onBook();
+            }}
           >
             Book Appointment
-          </a>
+          </button>
         </nav>
       </div>
     </header>

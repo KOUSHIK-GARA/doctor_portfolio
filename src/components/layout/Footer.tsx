@@ -3,6 +3,7 @@ import type { Doctor, SocialPlatform } from '../../types/portfolio';
 
 interface FooterProps {
   doctor: Doctor;
+  onBook: () => void;
 }
 
 const SOCIAL_LABELS: Record<SocialPlatform, string> = {
@@ -46,7 +47,7 @@ function SocialIcon({ platform }: { platform: SocialPlatform }) {
   }
 }
 
-export function Footer({ doctor }: FooterProps) {
+export function Footer({ doctor, onBook }: FooterProps) {
   const year = new Date().getFullYear();
 
   return (
@@ -126,9 +127,9 @@ export function Footer({ doctor }: FooterProps) {
           <div className="footerCta">
             <b>Need an appointment?</b>
             <p>We&apos;re just a call or email away.</p>
-            <a className="footerCtaBtn" href="#appointment">
+            <button className="footerCtaBtn" type="button" onClick={onBook}>
               Book an Appointment <ChevronRight size={16} />
-            </a>
+            </button>
           </div>
         </div>
       </div>

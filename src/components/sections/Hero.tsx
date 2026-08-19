@@ -24,9 +24,9 @@ export function Hero({ doctor, content }: HeroProps) {
           <a className="primary" href="#appointment">
             Book an Appointment <ChevronRight size={18} />
           </a>
-          <a className="secondary" href="#about">
+          {/* <a className="secondary" href="#about">
             Meet the Doctor
-          </a>
+          </a> */}
         </div>
 
         <div className="trust">
