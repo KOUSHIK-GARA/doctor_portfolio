@@ -1,23 +1,16 @@
 import type { PortfolioData } from '../types/portfolio';
-import heroImage from '../assets/images/dr-chaitanya-kiran.jpg';
-import consultationImage from '../assets/images/consultation.jpg';
-import collageImage from '../assets/images/interventional-collage.jpg';
-import bronchoscopyImage1 from '../assets/images/bronchoscopy-01.jpg';
-import bronchoscopyImage2 from '../assets/images/bronchoscopy-02.jpg';
-import procedureTeachingImage from '../assets/images/procedure-teaching.jpg';
-import bronchoscopyTeamImage from '../assets/images/bronchoscopy-team.jpg';
-import airwayScopeImage from '../assets/images/airway-scope.jpg';
-import procedureSuiteImage from '../assets/images/procedure-suite.jpg';
-import lungPointNavigationImage from '../assets/images/lungpoint-navigation.jpg';
-import endoscopySuiteImage from '../assets/images/endoscopy-suite.jpg';
+
+const S3_IMAGE_BASE_URL = 'https://amzn-s3-gck-profile.s3.ap-south-1.amazonaws.com/images';
+
+const imageUrl = (filename: string) => `${S3_IMAGE_BASE_URL}/${filename}`;
 
 /**
  * Single, typed source of truth for all website content.
  * Edit the values here — the UI is derived entirely from this object.
  *
  * NOTE: phone, email and address are placeholders — replace them with the
- * clinic's real contact details before publishing. The hero image is imported
- * so Vite fingerprints and cache-busts it at build time.
+ * clinic's real contact details before publishing. Images are served from S3
+ * to keep the frontend bundle lightweight.
  */
 export const portfolio: PortfolioData = {
   doctor: {
@@ -38,7 +31,7 @@ export const portfolio: PortfolioData = {
     email: 'dr.chaitanyakiran2301.ck@gmail.com',
     address: 'Manipal Hospitals, Bhubaneswar',
     bio: 'Dr. G. Chaitanya Kiran is a Consultant Interventional Pulmonologist and Sleep Medicine specialist trained at Yashoda Hospitals and Singapore General Hospital. He offers advanced diagnostic and therapeutic airway interventions for adults and children, alongside comprehensive sleep, asthma and respiratory critical care.',
-    heroImage,
+    heroImage: imageUrl('dr_gck.jpeg'),
     socials: [
       { platform: 'facebook', url: 'https://www.facebook.com/CHITTI2301' },
       { platform: 'instagram', url: 'https://www.instagram.com/urstruly_chitti/' },
@@ -61,7 +54,7 @@ export const portfolio: PortfolioData = {
   },
   about: {
     lead: 'Dr. G. Chaitanya Kiran provides advanced, evidence-based interventional pulmonology and sleep medicine care — from complex airway procedures to critical respiratory support for patients of all ages.',
-    image: consultationImage,
+    image: imageUrl('about_the_doctor.jpeg'),
     imageAlt: 'Dr. G. Chaitanya Kiran at his consultation clinic',
   },
   expertise: [
@@ -127,56 +120,58 @@ export const portfolio: PortfolioData = {
       details: [],
     },
   ],
-  expertiseImage: collageImage,
+  expertiseImage: imageUrl('collage.jpeg'),
   expertiseImageAlt: 'A collage of Dr. G. Chaitanya Kiran performing interventional pulmonology procedures',
   gallery: [
     {
-      src: procedureTeachingImage,
-      alt: 'Dr. Chaitanya Kiran guiding the team through an airway procedure',
-      caption: 'Leading the team through a live airway intervention',
-      objectPosition: '50% 40%',
+      src: imageUrl('G1.jpg'),
+      alt: 'Dr. Chaitanya Kiran holding a bronchoscope in a clinical procedure room',
+      caption: 'Focused bronchoscopy care at the bedside',
     },
     {
-      src: endoscopySuiteImage,
-      alt: 'Dr. Chaitanya Kiran in the endoscopy suite',
-      caption: 'Advanced endoscopy suite, fully equipped',
-      objectPosition: '50% 30%',
+      src: imageUrl('G2.jpg'),
+      alt: 'Dr. Chaitanya Kiran coordinating with his team during an airway procedure',
+      caption: 'Team coordination during airway intervention',
     },
     {
-      src: bronchoscopyTeamImage,
-      alt: 'Dr. Chaitanya Kiran performing a bronchoscopy with his team',
-      caption: 'Precision bronchoscopy with the clinical team',
-      objectPosition: '50% 30%',
+      src: imageUrl('G3.jpg'),
+      alt: 'Clinical team reviewing imaging guidance during an interventional pulmonology procedure',
+      caption: 'Image-guided planning inside the procedure room',
     },
     {
-      src: airwayScopeImage,
-      alt: 'Dr. Chaitanya Kiran navigating the airway during a bronchoscopy',
-      caption: 'Real-time airway visualisation during the procedure',
+      src: imageUrl('G4.jpg'),
+      alt: 'Dr. Chaitanya Kiran and clinical staff performing a bronchoscopy procedure',
+      caption: 'Airway procedure with the bronchoscopy team',
     },
     {
-      src: bronchoscopyImage1,
-      alt: 'Dr. Chaitanya Kiran performing a bedside bronchoscopy',
-      caption: 'Bedside bronchoscopy at the point of care',
-      // Shift the crop down to reveal more of the top of the frame.
-      objectPosition: '50% 28%',
+      src: imageUrl('G5.jpg'),
+      alt: 'Dr. Chaitanya Kiran beside advanced bronchoscopy equipment and airway imaging',
+      caption: 'Advanced bronchoscopy setup for interventional care',
     },
     {
-      src: procedureSuiteImage,
-      alt: 'Dr. Chaitanya Kiran monitoring imaging inside the procedure suite',
-      caption: 'Image-guided intervention in the procedure suite',
+      src: imageUrl('G6.jpg'),
+      alt: 'Dr. Chaitanya Kiran monitoring live endoscopic imaging in a procedure suite',
+      caption: 'Live endoscopic monitoring during intervention',
     },
     {
-      src: lungPointNavigationImage,
-      alt: 'Dr. Chaitanya Kiran with the LungPoint navigation bronchoscopy system',
-      caption: 'Navigation bronchoscopy for the lung periphery',
-      objectPosition: '50% 25%',
+      src: imageUrl('G7.jpg'),
+      alt: 'Dr. Chaitanya Kiran visualising the airway during bronchoscopy',
+      caption: 'Real-time airway visualisation during bronchoscopy',
     },
     {
-      src: bronchoscopyImage2,
-      alt: 'Dr. Chaitanya Kiran visualising the airway during a bronchoscopy',
-      caption: 'Live airway visualisation during the procedure',
-      // Shift the crop up to reveal more of the lower part of the frame.
-      objectPosition: '50% 68%',
+      src: imageUrl('G8.jpg'),
+      alt: 'Close-up of Dr. Chaitanya Kiran preparing bronchoscopy equipment',
+      caption: 'Precision handling during a bronchoscopic procedure',
+    },
+    {
+      src: imageUrl('G9.jpg'),
+      alt: 'Dr. Chaitanya Kiran standing beside navigation bronchoscopy imaging equipment',
+      caption: 'Navigation bronchoscopy with imaging support',
+    },
+    {
+      src: imageUrl('G10.jpg'),
+      alt: 'Dr. Chaitanya Kiran prepared for a therapeutic airway intervention',
+      caption: 'Prepared for therapeutic airway intervention',
     },
   ],
   education: [
