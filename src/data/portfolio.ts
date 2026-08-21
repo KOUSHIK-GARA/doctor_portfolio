@@ -270,8 +270,6 @@ export const portfolio: PortfolioData = {
     'World Association of Bronchology & Interventional Pulmonology',
   ],
   booking: {
-    // WhatsApp number in international format, digits only.
-    whatsappNumber: '919390093095',
     // Rounded evening slots (clinic hours 5:30–9:30 PM). Edit freely.
     timeSlots: [
       '5:00 PM',
@@ -285,14 +283,9 @@ export const portfolio: PortfolioData = {
       '9:00 PM',
       '9:30 PM',
     ],
-    // Direct-send options (no WhatsApp window opens when either is set):
-    //   1. relayEndpoint  — serverless URL that calls the WhatsApp Cloud API.
-    //   2. callmebotApiKey — free CallMeBot key that messages the number above.
-    // Leave both empty to temporarily fall back to opening WhatsApp (wa.me).
+    // Deployed Cloudflare Worker that emails appointment requests to the clinic.
+    // Set this to the worker URL after `npm run deploy` in
+    // `server/appointment-worker` (e.g. https://appointment-worker.<sub>.workers.dev).
     relayEndpoint: '',
-    callmebotApiKey: '',
-    // Deferred email flow.
-    enableEmail: false,
-    web3formsAccessKey: '',
   },
 };

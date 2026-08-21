@@ -22,7 +22,7 @@ export function Hero({ doctor, content }: HeroProps) {
 
         <div className="actions">
           <a className="primary" href="#appointment">
-            Book an Appointment <ChevronRight size={18} />
+            Meet the Doctor <ChevronRight size={18} />
           </a>
           {/* <a className="secondary" href="#about">
             Meet the Doctor

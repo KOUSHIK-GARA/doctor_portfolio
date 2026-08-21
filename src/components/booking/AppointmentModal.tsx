@@ -38,6 +38,7 @@ export function AppointmentModal({ open, onClose, booking }: AppointmentModalPro
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<SubmitStatus>('idle');
+  const [submitError, setSubmitError] = useState(false);
   const nameRef = useRef<HTMLInputElement>(null);
 
   // Lock body scroll and close on Escape while open; focus the first field.
@@ -66,6 +67,7 @@ export function AppointmentModal({ open, onClose, booking }: AppointmentModalPro
     setSlot('');
     setMessage('');
     setErrors({});
+    setSubmitError(false);
   }
 
   function validate(): FormErrors {
@@ -77,68 +79,55 @@ export function AppointmentModal({ open, onClose, booking }: AppointmentModalPro
     return next;
   }
 
-  function buildMessage() {
-    const lines = [
-      'New appointment request',
-      `Name: ${name.trim()}`,
-      `Phone: ${phone.trim()}`,
-      `Preferred date: ${formatDate(date)}`,
-      `Preferred time: ${slot}`,
-    ];
-    if (message.trim()) lines.push(`Message: ${message.trim()}`);
-    return lines.join('\n');
-  }
-
-  /** Sends the request without opening WhatsApp when a delivery path is set. */
-  async function deliver(text: string) {
-    if (booking.relayEndpoint) {
-      await fetch(booking.relayEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          to: booking.whatsappNumber,
-          message: text,
-          name: name.trim(),
-          phone: phone.trim(),
-          date: formatDate(date),
-          time: slot,
-        }),
-      });
-      return;
+  /**
+   * POSTs the appointment to the serverless relay, which emails it to the
+   * clinic. Returns true on success. If no endpoint is configured yet (local
+   * dev before the worker is deployed) we resolve optimistically with a warning.
+   */
+  async function deliver(): Promise<boolean> {
+    if (!booking.relayEndpoint) {
+      console.warn(
+        'booking.relayEndpoint is not set — appointment was not delivered. ' +
+          'Deploy server/appointment-worker and set the URL in portfolio.ts.',
+      );
+      return true;
     }
-    if (booking.callmebotApiKey) {
-      const url =
-        `https://api.callmebot.com/whatsapp.php?phone=${booking.whatsappNumber}` +
-        `&text=${encodeURIComponent(text)}&apikey=${booking.callmebotApiKey}`;
-      // Fire-and-forget: CallMeBot doesn't send CORS headers, so we can't read
-      // the response, but the request still triggers the message.
-      await fetch(url, { mode: 'no-cors' });
-      return;
-    }
-    // Fallback until a direct-send path is configured.
-    window.open(
-      `https://wa.me/${booking.whatsappNumber}?text=${encodeURIComponent(text)}`,
-      '_blank',
-      'noopener,noreferrer',
-    );
+    const response = await fetch(booking.relayEndpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name.trim(),
+        phone: phone.trim(),
+        date: formatDate(date),
+        time: slot,
+        message: message.trim(),
+      }),
+    });
+    return response.ok;
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setSubmitError(false);
     const found = validate();
     setErrors(found);
     if (Object.keys(found).length > 0) return;
 
     setStatus('sending');
+    let delivered = false;
     try {
-      await deliver(buildMessage());
+      delivered = await deliver();
     } catch {
-      // Even if the network relay fails we don't block the user; the clinic can
-      // still be reached by phone. Errors are intentionally swallowed here.
-    } finally {
-      setStatus('idle');
+      delivered = false;
+    }
+    setStatus('idle');
+
+    if (delivered) {
       resetForm();
       onClose();
+    } else {
+      // Keep the modal open so the patient can retry or call instead.
+      setSubmitError(true);
     }
   }
 
@@ -245,6 +234,12 @@ export function AppointmentModal({ open, onClose, booking }: AppointmentModalPro
               onChange={(event) => setMessage(event.target.value)}
             />
           </div>
+
+          {submitError ? (
+            <p className="apptSubmitError" role="alert">
+              Sorry, we couldn&apos;t send your request. Please try again or call the clinic.
+            </p>
+          ) : null}
 
           <button type="submit" className="btnBook" disabled={status === 'sending'}>
             {status === 'sending' ? (

@@ -1,0 +1,22 @@
+name = "appointment-worker"
+main = "src/index.ts"
+compatibility_date = "2025-08-18"
+# Required by worker-mailer (uses cloudflare:sockets / node compat).
+compatibility_flags = ["nodejs_compat"]
+
+# ── Public (non-secret) configuration ────────────────────────────────────────
+# These are safe to commit. Override them for your own deployment.
+[vars]
+# Where appointment requests are delivered. Can be any inbox (Gmail or not).
+CLINIC_EMAIL = "dr.chaitanyakiran2301.ck@gmail.com"
+# Comma-separated list of site origins allowed to call this worker (CORS).
+# Add your custom domain here too once you have one. Use "*" only for testing.
+ALLOWED_ORIGIN = "https://koushik-gara.github.io,http://localhost:5173"
+# Used to personalise the email that reaches the clinic.
+DOCTOR_NAME = "Dr. G. Chaitanya Kiran"
+CLINIC_NAME = "Dr. G. Chaitanya Kiran — Pulmonology & Sleep Medicine"
+
+# ── Secrets (DO NOT put here) ────────────────────────────────────────────────
+# Set these once with wrangler so they never touch the repo:
+#   wrangler secret put GMAIL_USER            # the Gmail address that sends
+#   wrangler secret put GMAIL_APP_PASSWORD    # 16-char Google App Password
